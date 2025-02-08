@@ -52,6 +52,10 @@ const QuotesCategory = () => {
     }
   };
 
+  const onEditQuote = async (id: string) => {
+    navigate(`/quotes/${id}/edit`);
+  };
+
   let content = null;
   if (loading) content = <Loader />;
   if (!loading) {
@@ -64,7 +68,7 @@ const QuotesCategory = () => {
                 <div className="card-body">
                   <p className="fs-4">{quoteCategory.text}</p>
                   <p className="text-muted small">— {quoteCategory.author}</p>
-                  <button className="btn btn-primary" onClick={() => navigate(`/quotes/${quoteCategory.id}/edit`)}>Edit</button>
+                  <button className="btn btn-primary" onClick={() => onEditQuote(quoteCategory.id)}>Edit</button>
                   <button className="btn btn-primary ms-4" onClick={() => onDeleteQuote(quoteCategory.id)}>Delete</button>
                 </div>
               </div>

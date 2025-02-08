@@ -2,12 +2,13 @@ import { useCallback, useEffect, useState } from "react";
 import axiosApi from "../../axiosApi.ts";
 import { IQuote, IQuoteApi } from "../../types";
 import Loader from "../../UI/Loader.tsx";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { categoriesArr } from "../../globalConstants.ts";
 
 const AllQoutes = () => {
   const [allQuotes, setAllQuotes] = useState<IQuote[]>([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const fetchData = useCallback(async () => {
     try {
@@ -61,6 +62,20 @@ const AllQoutes = () => {
     }
   }
 
+
+  const onDeleteQuote = async (id: string) => {
+    try{
+      await axiosApi.delete(`quotes/${id}.json`);
+      navigate("/quotes");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onEditQuote = async (id: string) => {
+    navigate(`/quotes/${id}/edit`);
+  };
+
   return (
     <>
       <div className="row">
@@ -75,8 +90,8 @@ const AllQoutes = () => {
                     <p className="fs-4">{quote.text}</p>
                     <p className="text-muted small">— {quote.author}</p>
                     <p className="text-muted small">{quote.category}</p>
-                    <button className="btn btn-primary">Edit</button>
-                    <button className="btn btn-primary ms-4">Delete</button>
+                    <button className="btn btn-primary" onClick={() => onEditQuote(quote.id)}>Edit</button>
+                    <button className="btn btn-primary ms-4" onClick={() => onDeleteQuote(quote.id)}>Delete</button>
                   </div>
                 </div>
               </div>
