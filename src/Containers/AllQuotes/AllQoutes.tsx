@@ -40,7 +40,7 @@ const AllQoutes = () => {
   }, [fetchData]);
 
   let content = null;
-  if (loading) content = <Loader/>;
+  if (loading) content = <Loader />;
   if (!loading) {
     if (allQuotes.length > 0) {
       content = (
@@ -51,9 +51,7 @@ const AllQoutes = () => {
             </li>
             {categoriesArr.map((quote) => (
               <li key={quote.id + quote.title}>
-                <NavLink to={`/quotes/${quote.id}`}>
-                  {quote.title}
-                </NavLink>
+                <NavLink to={`/quotes/${quote.id}`}>{quote.title}</NavLink>
               </li>
             ))}
           </ul>
@@ -64,8 +62,8 @@ const AllQoutes = () => {
     }
   }
 
-
-  return (<>
+  return (
+    <>
       <div className="row">
         <div className="col-4">{content}</div>
         <div className="col-8">
@@ -77,7 +75,7 @@ const AllQoutes = () => {
                   <div className="card-body">
                     <p className="fs-4">{quote.text}</p>
                     <p className="text-muted small">— {quote.author}</p>
-                    <p className="fs-4">{quote.category}</p>
+                    <p className="text-muted small">{quote.category}</p>
                     <button className="btn btn-primary">Edit</button>
                     <button className="btn btn-primary ms-4">Delete</button>
                   </div>

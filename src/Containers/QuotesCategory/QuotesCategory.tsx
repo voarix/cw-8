@@ -9,7 +9,7 @@ import { categoriesArr } from "../../globalConstants.ts";
 const QuotesCategory = () => {
   const [quotesCategory, setQuotesCategory] = useState<IQuote[]>([]);
   const [loading, setLoading] = useState(false);
-  const {categoryId} = useParams();
+  const { categoryId } = useParams();
 
   const fetchData = useCallback(async () => {
     try {
@@ -43,7 +43,7 @@ const QuotesCategory = () => {
   }, [fetchData]);
 
   let content = null;
-  if (loading) content = <Loader/>;
+  if (loading) content = <Loader />;
   if (!loading) {
     if (quotesCategory.length > 0) {
       content = (
@@ -53,7 +53,7 @@ const QuotesCategory = () => {
               <div className="card mt-4">
                 <div className="card-body">
                   <p className="fs-4">{quoteCategory.text}</p>
-                  <p className='text-muted small'>— {quoteCategory.author}</p>
+                  <p className="text-muted small">— {quoteCategory.author}</p>
                   <button className="btn btn-primary">Edit</button>
                   <button className="btn btn-primary ms-4">Delete</button>
                 </div>
@@ -67,17 +67,19 @@ const QuotesCategory = () => {
     }
   }
 
-  const categoryNameArr = categoriesArr.filter((category) => category.id === categoryId);
+  const categoryNameArr = categoriesArr.filter(
+    (category) => category.id === categoryId,
+  );
 
   return (
     <>
-      <div className='row'>
+      <div className="row">
         <div className="col-3">
-          <Quotes/>
+          <Quotes />
         </div>
-        <div className='col-8'>
+        <div className="col-8">
           <h1>{categoryNameArr[0].title}</h1>
-          <hr/>
+          <hr />
           {content}
         </div>
       </div>

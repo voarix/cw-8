@@ -26,7 +26,6 @@ const Quotes = () => {
         setQuotes(postsArray);
         console.log(postsArray);
         console.log(categoriesArr);
-
       } else {
         setQuotes([]);
       }
@@ -42,20 +41,18 @@ const Quotes = () => {
   }, [fetchData]);
 
   let content = null;
-  if (loading) content = <Loader/>;
+  if (loading) content = <Loader />;
   if (!loading) {
     if (quotes.length > 0) {
       content = (
         <>
           <ul>
             <li>
-              <NavLink to="/quotes/all" >All</NavLink>
+              <NavLink to="/quotes/all">All</NavLink>
             </li>
             {categoriesArr.map((quote) => (
               <li key={quote.id}>
-                <NavLink to={`/quotes/${quote.id}`}>
-                  {quote.title}
-                </NavLink>
+                <NavLink to={`/quotes/${quote.id}`}>{quote.title}</NavLink>
               </li>
             ))}
           </ul>
