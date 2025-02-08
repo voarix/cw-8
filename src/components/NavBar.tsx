@@ -6,7 +6,8 @@ const NavBar = () => {
       <div className="container">
         <NavLink
           to="/"
-          className="navbar-brand d-flex align-items-center gap-2">
+          className="navbar-brand d-flex align-items-center gap-2"
+        >
           <h1>Quotes central</h1>
         </NavLink>
 

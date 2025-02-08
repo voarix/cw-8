@@ -11,7 +11,6 @@ export interface IQuoteForm {
   text: string;
 }
 
-
 export interface IQuoteApi {
   [id: string]: IQuoteForm;
 }
