@@ -43,6 +43,15 @@ const QuotesCategory = () => {
   }, [fetchData]);
   console.log(quotesCategory);
 
+  const onDeleteQuote = async (id: string) => {
+    try{
+        await axiosApi.delete(`quotes/${id}.json`);
+        navigate("/quotes/all");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   let content = null;
   if (loading) content = <Loader />;
   if (!loading) {
@@ -56,7 +65,7 @@ const QuotesCategory = () => {
                   <p className="fs-4">{quoteCategory.text}</p>
                   <p className="text-muted small">— {quoteCategory.author}</p>
                   <button className="btn btn-primary" onClick={() => navigate(`/quotes/${quoteCategory.id}/edit`)}>Edit</button>
-                  <button className="btn btn-primary ms-4">Delete</button>
+                  <button className="btn btn-primary ms-4" onClick={() => onDeleteQuote(quoteCategory.id)}>Delete</button>
                 </div>
               </div>
             </div>
