@@ -24,7 +24,6 @@ const AllQoutes = () => {
           };
         });
         setAllQuotes(postsArray);
-        console.log(postsArray);
       } else {
         setAllQuotes([]);
       }

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axiosApi from "../../axiosApi.ts";
 import { IQuote } from "../../types";
 import Loader from "../../UI/Loader.tsx";
@@ -9,6 +9,7 @@ import { categoriesArr } from "../../globalConstants.ts";
 const QuotesCategory = () => {
   const [quotesCategory, setQuotesCategory] = useState<IQuote[]>([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const { categoryId } = useParams();
 
   const fetchData = useCallback(async () => {
@@ -27,7 +28,6 @@ const QuotesCategory = () => {
           };
         });
         setQuotesCategory(categoryArray);
-        console.log(categoryArray);
       } else {
         setQuotesCategory([]);
       }
@@ -41,6 +41,7 @@ const QuotesCategory = () => {
   useEffect(() => {
     void fetchData();
   }, [fetchData]);
+  console.log(quotesCategory);
 
   let content = null;
   if (loading) content = <Loader />;
@@ -54,7 +55,7 @@ const QuotesCategory = () => {
                 <div className="card-body">
                   <p className="fs-4">{quoteCategory.text}</p>
                   <p className="text-muted small">— {quoteCategory.author}</p>
-                  <button className="btn btn-primary">Edit</button>
+                  <button className="btn btn-primary" onClick={() => navigate(`/quotes/${quoteCategory.id}/edit`)}>Edit</button>
                   <button className="btn btn-primary ms-4">Delete</button>
                 </div>
               </div>

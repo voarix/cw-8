@@ -28,7 +28,7 @@ const QuoteForm: React.FC<Props> = ({
   const fetchOnePost = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await axiosApi(`posts/${idQuote}.json`);
+      const response = await axiosApi(`quotes/${idQuote}.json`);
 
       if (!response.data) {
         navigate("/");
